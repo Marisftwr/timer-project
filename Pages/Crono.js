@@ -15,8 +15,8 @@ export default function Crono(){
       //atualização do tempoDecorrido quando o cronômetro está iniciado
       if (iniciado) {
         interval = setInterval(() => {
-          setTempoDecorrido(prevTempo => prevTempo+1);
-        }, 1000);
+          setTempoDecorrido(prevTempo => prevTempo+0.1);
+        }, 100);
       } 
       
       //cancela a variável interval caso o cronômetro esteja pausado
@@ -54,7 +54,7 @@ export default function Crono(){
         <View style={styles.flex}>
           <View style={styles.crono}>
             <Text>
-              {moment.utc(tempoDecorrido * 1000).format('HH : mm : ss')}
+              {moment.utc(tempoDecorrido * 100).format('mm : ss . SS')}
             </Text>
           </View>
           <View style={styles.flexButtons}>
