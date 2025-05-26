@@ -44,49 +44,58 @@ export default function Timer(){
     return () => clearInterval(interval);
     }, [tempIniciado]);
 
-    
+    const exibir = () => {
+      if (tempIniciado){
+        return(
+          <View style={styles.flexInput}>
+            <Text style={styles.temp}>
+              {moment.utc(totalSegundos * 1000).format('HH : mm : ss')}
+              </Text>
+          </View>
+        );
+      } else{
+        return(
+          <View style={styles.flexInput}>
+            <TextInput style={styles.input}
+              value = {hora}
+              maxLength = {2}
+              keyboardType="numeric"
+              placeholder = '00'
+              onChangeText={(t) => {
+              setHora( Math.max(0, Math.min(23, parseInt(t) || 0)));
+              }}
+            />
+            <Text style={styles.text}>:</Text>
+            <TextInput style={styles.input}
+              value = {minuto}
+              maxLength = {2}
+              keyboardType="numeric"
+              placeholder = '00'
+              onChangeText={(t) => {
+                setMinuto( Math.max(0, Math.min(59, parseInt(t) || 0)));
+              }}
+            />
+            <Text style={styles.text}>:</Text>
+            <TextInput style={styles.input}
+              value = {segundo}
+              maxLength = {2}
+              keyboardType="numeric"
+              placeholder = '00'
+              onChangeText={(t) => {
+                setSegundo( Math.max(0, Math.min(59, parseInt(t) || 0)));
+              }}
+            />
+          </View>
+        );
+      }
+    }
     return (
         <View style={styles.flex}>
           <View>
+            {exibir()}
             <View>
-              <Text style={styles.temp}>
-                {moment.utc(totalSegundos * 1000).format('HH : mm : ss')}
-              </Text>
-            </View> 
-            <View style={styles.flexInput}>
-                <TextInput style={styles.input}
-                    value = {hora}
-                    maxLength = {2}
-                    keyboardType="numeric"
-                    placeholder = '00'
-                    onChangeText={(t) => {
-                      setHora( Math.max(0, Math.min(23, parseInt(t) || 0)));
-                    }}
-                />
-                <Text>:</Text>
-                <TextInput style={styles.input}
-                    value = {minuto}
-                    maxLength = {2}
-                    keyboardType="numeric"
-                    placeholder = '00'
-                    onChangeText={(t) => {
-                      setMinuto( Math.max(0, Math.min(59, parseInt(t) || 0)));
-                    }}
-                />
-                <Text>:</Text>
-                <TextInput style={styles.input}
-                    value = {segundo}
-                    maxLength = {2}
-                    keyboardType="numeric"
-                    placeholder = '00'
-                    onChangeText={(t) => {
-                      setSegundo( Math.max(0, Math.min(59, parseInt(t) || 0)));
-                    }}
-                />
-            </View>
-            <View>
-                <TouchableOpacity style={styles.button} onPress={iniciaTemp}>
-                  <Text>Iniciar</Text>
+                <TouchableOpacity style={styles.button} onPress={iniciaTemp} disabled={tempIniciado}>
+                  <Text> Iniciar </Text>
                 </TouchableOpacity>
             </View>
           </View>
@@ -98,33 +107,64 @@ const styles = StyleSheet.create({
   button: {
     margin: 10,
     alignItems: "center",
-    backgroundColor: "#C988D0",
+    backgroundColor: "#9D86A3",
     padding: 10,
+    borderWidth: '1px',
+    borderColor: '#754E71',
+    borderStyle: 'solid',
     borderRadius: 10,
-    width: 55,
+    width: 75,
     alignSelf: 'center',
   },
   input: {
-    width: '30px',
+    width: '25%',
+    height: '85%',
     textAlign: 'center',
+    textAlignVertical: 'center', 
+    justifyContent: 'center',
+    paddingVertical: '2.5%',  
+    backgroundColor: '#9D86A3',
+    heigth: '100%',
+    fontSize: 50,
+    color: '#754E71',
+    margin: '2.5%',
+    borderRadius: 5,
   },
   temp: {
+    textAlign: 'center',
+    width: '100%',
+    lineHeight: 75,
     alignItems: 'center',
-    fontSize: 50,
+    color: '#754E71',
+    fontSize: 75,
+    letterSpacing: 5,
+  },
+  text: {
+    alignItems: 'center',
+    fontSize: 75,
+    color: '#754E71',
+    height: '100%',
   },
   flexInput: {
+    height: '33%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: "#C988D0",
-    borderRadius: 10,
-    width: 70,
+    backgroundColor: "#BB9FC2",
+    borderRadius: 5,
+    width: '90%',
+    maxWidth: 400,
+    fontSize: 50,
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
   },
   flex: {
+    maxWidth: 500,
     alignItems: 'center',
     alignSelf: 'center',
-    paddingTop: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
   }
 })
