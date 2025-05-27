@@ -8,7 +8,7 @@ export default function Home(){
     return(
         <>
         <Header title='CronoApp' />
-            <View style={styles.container}>
+        <View style={styles.container}>
                 <Text style={styles.title}>Crie uma contagem regressiva!</Text>
                 <View style={styles.flex}>
                     <Text style={styles.Text}>Horas</Text>
