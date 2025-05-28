@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity, TextInput} from 'react-native';
+import { Audio } from 'expo-av';
 import moment from 'moment';
 
 export default function Timer(){
@@ -21,11 +22,20 @@ export default function Timer(){
         // temporizador iniciado com algum valor válido
         setTempIniciado(true);
         setTotalSegundos(total);
-      } else if((tempIniciado) && (total==0))
-      // quando termina a contagem regressiva
-      // * adicionar som
-      console.log("acabou");
+        console.log("inicio");
+      } else{
+      console.log("Insira algum valor");
     }
+  };
+
+    const tocarSom = async () => {
+      const { som } = await Audio.Sound.createAsync(
+        require('../assets/ding.wav')  
+      );
+      await som.playAsync();
+      console.log("Som");
+
+    };
 
     useEffect (() => {
       if(tempIniciado==false)
@@ -35,6 +45,14 @@ export default function Timer(){
             if (segundosRestantes <= 1){
                 clearInterval(interval);
                 setTempIniciado(false);
+                // quando termina a contagem regressiva
+                console.log("Fim");
+                //limpa os valores
+                setHora(0);
+                setMinuto(0);
+                setSegundo(0);
+                // * tocarr som
+                tocarSom();
                 return 0;
               } 
               return segundosRestantes-1;
@@ -55,7 +73,7 @@ export default function Timer(){
         );
       } else{
         return(
-          <View style={styles.flexInput}>
+        <View style={styles.flexInput}>
             <TextInput style={styles.input}
               value = {hora}
               maxLength = {2}
@@ -109,56 +127,56 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#9D86A3",
     padding: 10,
-    borderWidth: '1px',
+    borderWidth: 1,
     borderColor: '#754E71',
     borderStyle: 'solid',
     borderRadius: 10,
     width: 75,
     alignSelf: 'center',
   },
-  input: {
-    width: '25%',
-    height: '85%',
-    textAlign: 'center',
-    textAlignVertical: 'center', 
-    justifyContent: 'center',
-    paddingVertical: '2.5%',  
-    backgroundColor: '#9D86A3',
-    heigth: '100%',
-    fontSize: 50,
-    color: '#754E71',
-    margin: '2.5%',
-    borderRadius: 5,
-  },
   temp: {
     textAlign: 'center',
-    width: '100%',
-    lineHeight: 75,
+    width: '90%',
+    lineHeight: 70,
     alignItems: 'center',
-    color: '#754E71',
-    fontSize: 75,
-    letterSpacing: 5,
-  },
-  text: {
-    alignItems: 'center',
-    fontSize: 75,
-    color: '#754E71',
-    height: '100%',
+    color: 'black',
+    fontSize: 60,
+    letterSpacing: 0,
   },
   flexInput: {
-    height: '33%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: "#BB9FC2",
+    backgroundColor: '#BB9FC2',
     borderRadius: 5,
     width: '90%',
     maxWidth: 400,
-    fontSize: 50,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     flexWrap: 'nowrap',
+    paddingVertical: 10,
   },
+  input: {
+    width: '23%',
+    height: 70,
+    textAlign: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#9D86A3',
+    fontSize: 60,
+    color: '#754E71',
+    marginHorizontal: '3%',
+    borderRadius: 5,
+    paddingBottom: 0,
+    paddingTop: 0,
+  },
+  text: {
+  fontSize: 60,
+  color: '#754E71',
+  height: 70,
+  lineHeight: 70,
+  textAlignVertical: 'center',
+  textAlign: 'center', 
+},
   flex: {
     maxWidth: 500,
     alignItems: 'center',
