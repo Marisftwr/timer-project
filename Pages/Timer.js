@@ -29,11 +29,12 @@ export default function Timer(){
   };
 
     const tocarSom = async () => {
-      const { som } = await Audio.Sound.createAsync(
+      const { sound  } = await Audio.Sound.createAsync(
         require('../assets/ding.wav')  
       );
-      await som.playAsync();
+      await sound.playAsync();
       console.log("Som");
+
 
     };
 
