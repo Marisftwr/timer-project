@@ -16,7 +16,7 @@ export default function Crono(){
       if (iniciado) {
         interval = setInterval(() => {
           setTempoDecorrido(prevTempo => prevTempo+0.1);
-        }, 100);
+        }, 10);
       } 
       
       //cancela a variável interval caso o cronômetro esteja pausado
