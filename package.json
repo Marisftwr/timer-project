@@ -1,6 +1,5 @@
 {
-  "name": "timerproject",
-  "version": "1.0.0",
+  "license": "0BSD",
   "main": "index.js",
   "scripts": {
     "start": "expo start",
@@ -11,10 +10,12 @@
   "dependencies": {
     "expo": "~53.0.9",
     "expo-status-bar": "~2.2.3",
-    "moment": "^2.30.1",
     "react": "19.0.0",
     "react-native": "0.79.2",
-    "scripts": "^0.1.0"
+    "moment": "*",
+    "expo-av": "~15.1.4",
+    "@expo/vector-icons": "^14.1.0",
+    "react-native-paper": "4.9.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
