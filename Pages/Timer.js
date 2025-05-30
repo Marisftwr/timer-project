@@ -126,12 +126,13 @@ const styles = StyleSheet.create({
   button: {
     margin: 10,
     alignItems: "center",
-    backgroundColor: "#9D86A3",
+    backgroundColor: '#99629A',
     padding: 10,
     borderWidth: 1,
     borderColor: '#754E71',
     borderStyle: 'solid',
     borderRadius: 10,
+    marginTop: 30,
     width: 75,
     alignSelf: 'center',
   },
@@ -139,10 +140,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: '90%',
     lineHeight: 70,
+    paddingVertical: 5,
     alignItems: 'center',
-    color: 'black',
-    fontSize: 60,
-    letterSpacing: 0,
+    color: '#754E71',
+    fontSize: 65,
+    letterSpacing: 4,
   },
   flexInput: {
     display: 'flex',
@@ -185,5 +187,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
+    marginTop: 5,
   }
 })

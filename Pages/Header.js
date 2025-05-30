@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
- 
+import { useModo } from '../context/ModoContext.js';
+
 export default function Header(props) {
+  const { setOpcaoButton } = useModo();
   return (
       <View style={styles.container}>
             <View style={styles.flex}>
@@ -9,8 +11,8 @@ export default function Header(props) {
                 <Image style={styles.logo} source={require('../assets/clock_icon.png')} />
             </View>
             <View style={styles.flex}>
-                <TouchableOpacity style={styles.button}><Text>Cronômetro</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.button}><Text>Temporizador</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => setOpcaoButton(false)}><Text>Cronômetro</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => setOpcaoButton(true)}><Text>Temporizador</Text></TouchableOpacity>
             </View>
       </View>
   );
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     alignItems: "center",
-    backgroundColor: "#C988D0",
+    backgroundColor: '#99629A',
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 10,

@@ -54,7 +54,7 @@ export default function Crono(){
         <View style={styles.flex}>
           <View style={styles.crono}>
             <Text style={styles.textCrono}>
-              {moment.utc(tempoDecorrido * 100).format('mm : ss : SS')}
+              {moment.utc(tempoDecorrido * 100).format('mm : ss . SS')}
             </Text>
           </View>
           <View style={styles.flexButtons}>
@@ -76,9 +76,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     alignItems: 'center',
-    color: 'black',
-    fontSize: 25,
+    color: '#754E71',
+    fontSize: 65,
     paddingHorizontal: 5,
+    letterSpacing: 4,
   },
   flexButtons: {
     display: 'flex',
@@ -88,10 +89,13 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     alignItems: "center",
-    backgroundColor: "#C988D0",
+    backgroundColor: '#99629A',
     padding: 10,
     borderRadius: 10,
     marginHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#7B4680',
+    borderStyle: 'solid',
   },
   flex: {
     alignItems: 'center',

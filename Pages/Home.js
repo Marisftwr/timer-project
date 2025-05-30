@@ -1,23 +1,40 @@
 import {Text, StyleSheet, View} from 'react-native';
-import React from 'react';
 import Header from './Header';
 import Timer from './Timer';
-import Crono from './Crono'
+import Crono from './Crono';
+import { useModo } from '../context/ModoContext.js'; 
+
 //Novo arquivo Home.js
 export default function Home(){
+    const { opcaoButton } = useModo();
+
+    const exibir = () => {
+        if (opcaoButton){
+          return(
+            <View>
+              <Text style={styles.title}>Crie um temporizador</Text>
+              <View style={styles.flex}>
+                <Text style={styles.Text}>Horas</Text>
+                <Text style={styles.Text}>Minutos</Text>
+                <Text style={styles.Text}>Segundos</Text>
+              </View>
+              <Timer />
+            </View>
+          );
+        } else{
+          return(
+            <View>
+              <Text style={styles.title}>Inicie o cronômetro</Text>
+              <Crono />
+            </View>
+          );
+        }
+      }
     return(
         <>
         <Header title='CronoApp' />
         <View style={styles.container}>
-                <Text style={styles.title}>Crie uma contagem regressiva!</Text>
-                <View style={styles.flex}>
-                    <Text style={styles.Text}>Horas</Text>
-                    <Text style={styles.Text}>Minutos</Text>
-                    <Text style={styles.Text}>Segundos</Text>
-                </View>
-            <Timer />
-            <Text style={styles.title}>Inicie o cronômetro</Text>
-            <Crono />
+          {exibir()};
         </View>
         </>
         
@@ -32,30 +49,30 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
+    alignSelf: 'center',
     borderRadius: 20,
-    width: 300,
+    minWidth: 300,
+    maxWidth: 350,
     backgroundColor: '#7B4680',
     fontSize: 30,
     fontWeight: 'semibold',
     color: 'black',
-    padding: 10
-  },
-  button: {
-    marginTop: 20,
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
-
+    padding: 10,
+    marginBottom: 25,
   },
   Text : {
     fontSize: 20,
     fontWeight: 'bold',
-    paddingLeft: 15
+    textAlign: 'center',
+    width: '27.5%',
   },
   flex: {
     alignItems: 'center',
     alignSelf: 'center',
     paddingTop: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '90%',
+    maxWidth: 400,
   }
 })
